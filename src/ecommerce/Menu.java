@@ -76,12 +76,12 @@ public class Menu {
 					category = scanner.nextLine();
 					
 					produto.register(new ProdutoFruta(name, produto.generateId() , price, category));
-					
+					keyPress();
 					break;
 				case 2: 
 					System.out.println("Listar Produtos\n\n");
 					produto.listAll();
-					
+					keyPress();
 					break;
 				case 3:
 					System.out.println("Atualizar Produtos\n\n");
@@ -111,20 +111,20 @@ public class Menu {
 				    } else {
 				        System.out.println("Produto não encontrado.");
 				    }
-				    
+				    keyPress();
 				    break;
 				case 4: 
 					System.out.println("Deletar Produto\n\n");
 					
 					System.out.println("Digite o id do produto: ");
 					id = scanner.nextInt();
-					
+					keyPress();
 					produto.delete(id);
 					
 					break;
 				default:
 					System.out.println("\nEscolha uma opção válida\n");
-					
+					keyPress();
 					break;
 			}
 			
