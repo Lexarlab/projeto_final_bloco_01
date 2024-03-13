@@ -2,9 +2,14 @@ package ecommerce;
 
 import java.util.Scanner;
 
+import ecommerce.model.ProdutoFruta;
+
 public class Menu {
 
 	public static void main(String[] args) {
+		
+		ProdutoFruta p1 = new ProdutoFruta("Manga", 1234, 2.50f , "Toprical");
+		p1.view();
 		
 		Scanner scanner = new Scanner(System.in);
 		
