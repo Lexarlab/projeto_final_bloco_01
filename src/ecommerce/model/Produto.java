@@ -4,7 +4,6 @@ public abstract class Produto {
 	
 	private String name;
 	private int id;
-	private int type;
 	private float price;
 	
 	public Produto(String name, int id, float price) {
@@ -38,9 +37,8 @@ public abstract class Produto {
 	}
 	
 	public void view () {
-		System.out.println("Numero de id: " + this.id);
+		System.out.println("\nNumero de id: " + this.id);
 		System.out.println("Nome do Produto: " + this.name);
-		System.out.println("Tipo do Produto: " + this.type);
 		System.out.println("Preço: " + this.price);
 	}
 	

@@ -1,19 +1,32 @@
 package ecommerce;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import ecommerce.controller.ProdutoController;
 import ecommerce.model.ProdutoFruta;
 
 public class Menu {
 
 	public static void main(String[] args) {
 		
+		ProdutoController produto = new ProdutoController();
+		
 		ProdutoFruta p1 = new ProdutoFruta("Manga", 1234, 2.50f , "Toprical");
-		p1.view();
+		produto.register(p1);
+		
+		ProdutoFruta p2 = new ProdutoFruta("Morango", 1274, 4.0f , "Toprical");
+		produto.register(p2);
+		
+		ProdutoFruta p3 = new ProdutoFruta("Maracujá", 1904, 7.3f , "Citrica");
+		produto.register(p3);
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		int option; 
+		int option, id;
+		String name, category = null;
+		float price;
 		
 		while(true) {
 			System.out.println("*****************************************************");
@@ -32,7 +45,13 @@ public class Menu {
 			System.out.println("Entre com a opção desejada:                          ");
 			System.out.println("                                                     ");
 			
-			option = scanner.nextInt();
+			try {
+				option = scanner.nextInt();
+			}catch(InputMismatchException e){
+				System.out.println("\nDigite valores inteiros!");
+				scanner.nextLine();
+				option = 0;
+			}
 			
 			if (option == 5) {
 				System.out.println("\nAté a próxima");
@@ -44,18 +63,55 @@ public class Menu {
 			switch(option) {
 				case 1: 
 					System.out.println("Cadastrar Produto\n\n");
+					
+					System.out.println("Digite o nome do produto: ");
+					name = scanner.nextLine();
+					System.out.println("Digite o preço do Produto: ");
+					price = scanner.nextFloat();
+					scanner.nextLine();
+					System.out.println("Didite a categoria do Produto: ");
+					category = scanner.next();
+					keyPress();
 					break;
 				case 2: 
 					System.out.println("Listar Produtos\n\n");
+					produto.listAll();
+					keyPress();
 					break;
 				case 3:
 					System.out.println("Atualizar Produtos\n\n");
-					break;
+				    
+				    System.out.println("Digite o Id do produto: ");
+				    id = scanner.nextInt();
+				    
+				    var searchProduct = produto.searchInCollection(id);
+				    
+				    if (searchProduct != null) {
+				        System.out.println("Digite o novo preço: ");
+				        float newPrice = scanner.nextFloat();
+				        
+				        ProdutoFruta productUpdate = new ProdutoFruta(category, id, newPrice, category);
+				        
+				        produto.update(productUpdate);
+				        
+				        System.out.println("Produto atualizado com sucesso!");
+				    } else {
+				        System.out.println("Produto não encontrado.");
+				    }
+				    keyPress();
+				    break;
 				case 4: 
 					System.out.println("Deletar Produto\n\n");
+					
+					System.out.println("Digite o id do produto: ");
+					id = scanner.nextInt();
+					
+					produto.delete(id);
+					keyPress();
 					break;
 				default:
 					System.out.println("\nEscolha uma opção válida\n");
+					keyPress();
 					break;
 			}
 			
@@ -69,5 +125,17 @@ public class Menu {
 		System.out.println("*********************************************************");
 
 	}
+	public static void keyPress() {
 
+		try {
+
+			System.out.println("\n\nPressione Enter para Continuar...");
+			System.in.read();
+
+		} catch (IOException e) {
+
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+
+		}
+	}
 }

@@ -18,8 +18,10 @@ public class ProdutoFruta extends Produto{
 		this.category = category;
 	}
 	
+	@Override
 	public void view () {
 		super.view();
+		System.out.println("Categoria: " + this.category);
 	}
 
 }

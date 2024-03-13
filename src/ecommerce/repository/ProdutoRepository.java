@@ -4,10 +4,10 @@ import ecommerce.model.Produto;
 
 public interface ProdutoRepository {
 	
-	public void procurarPorid(int id);
-	public void listarTodas();
-	public void cadastrar(Produto produto);
-	public void atualizar(Produto produto);
-	public void deletar(int id);
+	public void lookForId(int id);
+	public void listAll();
+	public void register(Produto produto);
+	public void update(Produto produto);
+	public void delete(int id);
 
 }
