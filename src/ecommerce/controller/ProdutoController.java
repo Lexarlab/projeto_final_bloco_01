@@ -26,7 +26,7 @@ public class ProdutoController implements ProdutoRepository {
 	@Override
 	public void register(Produto produto) {
 		listProduct.add(produto);
-		System.out.println("\nO Produto " + produto.getName() + " foi registrado com sucesso!");
+		System.out.println("\nO Produto " + produto.getId() + " foi registrado com sucesso!");
 	}
 
 	@Override
@@ -39,15 +39,6 @@ public class ProdutoController implements ProdutoRepository {
 		} else 
 			System.out.println("\nProduto " + produto.getName() + " não foi encontrado!");
 		
-	}
-
-	public Produto searchInCollection(int id) {
-		for (var product: listProduct) {
-			if (product.getId() == id) {
-				return product;
-			}
-		}
-		return null;
 	}
 
 	@Override
@@ -65,6 +56,13 @@ public class ProdutoController implements ProdutoRepository {
 	public int generateId() {
 		return ++ id;
 	}
-
+	public Produto searchInCollection(int id) {
+		for (var searchproduct: listProduct) {
+			if (searchproduct.getId() == id) {
+				return searchproduct;
+			}
+		}
+		return null;
+	}
 
 }
